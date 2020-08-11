@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import os
+from random import randrange 
 
 import rclpy
 import rclpy.action
@@ -35,7 +36,7 @@ class DirectNode:
         rclpy.init(args=argv)
 
         node_name_suffix = getattr(
-            args, 'node_name_suffix', '_%d' % os.getpid())
+            args, 'node_name_suffix', '_%d' % randrange(1000000))
         start_parameter_services = getattr(
             args, 'start_parameter_services', False)
 

@@ -17,6 +17,7 @@ from collections import namedtuple
 import functools
 import inspect
 import os
+from random import randrange 
 
 import netifaces
 
@@ -53,7 +54,7 @@ def main(*, script_name='_ros2_daemon', argv=None):
     NodeArgs = namedtuple(
         'NodeArgs', ('node_name_suffix', 'start_parameter_services'))
     node_args = NodeArgs(
-        node_name_suffix='_daemon_%d' % args.ros_domain_id,
+        node_name_suffix='_daemon_%d' % randrange(1000000),
         start_parameter_services=False)
     with NetworkAwareNode(node_args) as node:
         server = LocalXMLRPCServer(
